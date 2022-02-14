@@ -14,19 +14,35 @@ require 'date'
 require 'time'
 
 module OryOathkeeperClient
-  # RuleHandler RuleHandler RuleHandler rule handler
-  class RuleHandler
-    # Config contains the configuration for the handler. Please read the user guide for a complete list of each handler's available settings.
-    attr_accessor :config
+  # GenericError The standard error format
+  class GenericError
+    # code
+    attr_accessor :code
 
-    # Handler identifies the implementation which will be used to handle this specific request. Please read the user guide for a complete list of available handlers.
-    attr_accessor :handler
+    # details
+    attr_accessor :details
+
+    # message
+    attr_accessor :message
+
+    # reason
+    attr_accessor :reason
+
+    # request
+    attr_accessor :request
+
+    # status
+    attr_accessor :status
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'config' => :'config',
-        :'handler' => :'handler'
+        :'code' => :'code',
+        :'details' => :'details',
+        :'message' => :'message',
+        :'reason' => :'reason',
+        :'request' => :'request',
+        :'status' => :'status'
       }
     end
 
@@ -38,8 +54,12 @@ module OryOathkeeperClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'config' => :'Object',
-        :'handler' => :'String'
+        :'code' => :'Integer',
+        :'details' => :'Array<Hash<String, Object>>',
+        :'message' => :'String',
+        :'reason' => :'String',
+        :'request' => :'String',
+        :'status' => :'String'
       }
     end
 
@@ -53,23 +73,41 @@ module OryOathkeeperClient
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `OryOathkeeperClient::RuleHandler` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `OryOathkeeperClient::GenericError` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `OryOathkeeperClient::RuleHandler`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `OryOathkeeperClient::GenericError`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'config')
-        self.config = attributes[:'config']
+      if attributes.key?(:'code')
+        self.code = attributes[:'code']
       end
 
-      if attributes.key?(:'handler')
-        self.handler = attributes[:'handler']
+      if attributes.key?(:'details')
+        if (value = attributes[:'details']).is_a?(Array)
+          self.details = value
+        end
+      end
+
+      if attributes.key?(:'message')
+        self.message = attributes[:'message']
+      end
+
+      if attributes.key?(:'reason')
+        self.reason = attributes[:'reason']
+      end
+
+      if attributes.key?(:'request')
+        self.request = attributes[:'request']
+      end
+
+      if attributes.key?(:'status')
+        self.status = attributes[:'status']
       end
     end
 
@@ -91,8 +129,12 @@ module OryOathkeeperClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          config == o.config &&
-          handler == o.handler
+          code == o.code &&
+          details == o.details &&
+          message == o.message &&
+          reason == o.reason &&
+          request == o.request &&
+          status == o.status
     end
 
     # @see the `==` method
@@ -104,7 +146,7 @@ module OryOathkeeperClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [config, handler].hash
+      [code, details, message, reason, request, status].hash
     end
 
     # Builds the object from hash
