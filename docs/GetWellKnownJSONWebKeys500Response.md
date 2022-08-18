@@ -1,4 +1,4 @@
-# OryOathkeeperClient::InlineResponse500
+# OryOathkeeperClient::GetWellKnownJSONWebKeys500Response
 
 ## Properties
 
@@ -16,7 +16,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryOathkeeperClient::InlineResponse500.new(
+instance = OryOathkeeperClient::GetWellKnownJSONWebKeys500Response.new(
   code: null,
   details: null,
   message: null,
