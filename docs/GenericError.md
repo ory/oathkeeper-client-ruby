@@ -1,11 +1,11 @@
-# OryOathkeeperClient::GetWellKnownJSONWebKeys500Response
+# OryOathkeeperClient::GenericError
 
 ## Properties
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **code** | **Integer** |  | [optional] |
-| **details** | **Array&lt;Object&gt;** |  | [optional] |
+| **details** | **Array&lt;Hash&lt;String, Object&gt;&gt;** |  | [optional] |
 | **message** | **String** |  | [optional] |
 | **reason** | **String** |  | [optional] |
 | **request** | **String** |  | [optional] |
@@ -16,7 +16,7 @@
 ```ruby
 require 'ory-oathkeeper-client'
 
-instance = OryOathkeeperClient::GetWellKnownJSONWebKeys500Response.new(
+instance = OryOathkeeperClient::GenericError.new(
   code: null,
   details: null,
   message: null,
