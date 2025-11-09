@@ -14,8 +14,8 @@ require 'date'
 require 'time'
 
 module OryOathkeeperClient
-  class HealthStatus
-    # Status always contains \"ok\".
+  class IsAlive200Response
+    # Always \"ok\".
     attr_accessor :status
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -52,20 +52,22 @@ module OryOathkeeperClient
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `OryOathkeeperClient::HealthStatus` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `OryOathkeeperClient::IsAlive200Response` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `OryOathkeeperClient::HealthStatus`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `OryOathkeeperClient::IsAlive200Response`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
       if attributes.key?(:'status')
         self.status = attributes[:'status']
+      else
+        self.status = nil
       end
     end
 
@@ -74,6 +76,10 @@ module OryOathkeeperClient
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @status.nil?
+        invalid_properties.push('invalid value for "status", status cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -81,7 +87,18 @@ module OryOathkeeperClient
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @status.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] status Value to be assigned
+    def status=(status)
+      if status.nil?
+        fail ArgumentError, 'status cannot be nil'
+      end
+
+      @status = status
     end
 
     # Checks equality by comparing each attribute.
